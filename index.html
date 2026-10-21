@@ -1,60 +1,1722 @@
+```html
 <!DOCTYPE html>
-
-<html>
+<html lang="en">
 <head>
-    <title>My Website</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-```
+<title>F1 Fanbase | Formula One Community</title>
+
 <style>
-    body {
-        background-color: lightblue;
-        font-family: Arial;
-        text-align: center;
+
+/* ==============================
+   GENERAL STYLING
+================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+:root {
+    --red: #ff1838;
+    --dark: #080b10;
+    --card: #111720;
+    --light: #f4f4f4;
+    --gray: #a4acb8;
+    --border: #29313c;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--dark);
+    color: var(--light);
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+.container {
+    width: 90%;
+    max-width: 1250px;
+    margin: auto;
+}
+
+section {
+    padding: 65px 0;
+    scroll-margin-top: 80px;
+}
+
+.section-title {
+    font-size: 32px;
+    font-weight: 900;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+    border-left: 5px solid var(--red);
+    padding-left: 15px;
+}
+
+.section-title span {
+    color: var(--red);
+}
+
+.section-description {
+    color: var(--gray);
+    margin-top: -20px;
+    margin-bottom: 30px;
+}
+
+/* ==============================
+   NAVIGATION BAR
+================================= */
+
+header {
+    background: #05070b;
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar {
+    min-height: 75px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: 900;
+    color: var(--red);
+    letter-spacing: 1px;
+}
+
+.logo span {
+    color: white;
+}
+
+.nav-links {
+    display: flex;
+    gap: 22px;
+    list-style: none;
+    flex-wrap: wrap;
+}
+
+.nav-links a {
+    font-size: 13px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    color: var(--red);
+}
+
+/* ==============================
+   HERO SECTION
+================================= */
+
+.hero {
+    min-height: 540px;
+    display: flex;
+    align-items: center;
+    background:
+        linear-gradient(90deg,
+        rgba(5, 7, 11, 0.98),
+        rgba(5, 7, 11, 0.68)),
+        url("https://images.unsplash.com/photo-1532906619279-a4b7267faa66?auto=format&fit=crop&w=1800&q=85")
+        center/cover no-repeat;
+    border-bottom: 1px solid var(--border);
+}
+
+.hero-content {
+    max-width: 700px;
+    padding: 50px 0;
+}
+
+.hero-label {
+    color: var(--red);
+    font-weight: bold;
+    letter-spacing: 4px;
+    font-size: 14px;
+}
+
+.hero h1 {
+    font-size: clamp(42px, 7vw, 78px);
+    line-height: 1.05;
+    margin: 20px 0;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+.hero h1 span {
+    color: var(--red);
+}
+
+.hero p {
+    color: #d4d8de;
+    max-width: 550px;
+    margin-bottom: 30px;
+    font-size: 17px;
+}
+
+.btn {
+    display: inline-block;
+    background: var(--red);
+    color: white;
+    padding: 13px 25px;
+    border-radius: 4px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background: #d80020;
+    transform: translateY(-3px);
+}
+
+.btn-outline {
+    display: inline-block;
+    padding: 12px 24px;
+    border: 1px solid white;
+    border-radius: 4px;
+    margin-left: 10px;
+    transition: 0.3s;
+}
+
+.btn-outline:hover {
+    background: white;
+    color: black;
+}
+
+/* ==============================
+   STATISTICS
+================================= */
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.stat-card {
+    padding: 28px;
+    text-align: center;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.stat-card:hover {
+    border-color: var(--red);
+    transform: translateY(-5px);
+}
+
+.stat-card h2 {
+    font-size: 38px;
+    color: var(--red);
+}
+
+.stat-card p {
+    color: var(--gray);
+    font-size: 14px;
+}
+
+/* ==============================
+   DRIVER CARDS
+================================= */
+
+.driver-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 22px;
+}
+
+.driver-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: 0.3s;
+}
+
+.driver-card:hover {
+    transform: translateY(-7px);
+    border-color: var(--red);
+}
+
+.driver-image {
+    height: 210px;
+    background: linear-gradient(135deg, #202a37, #10141c);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.driver-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: 0.4s;
+}
+
+.driver-card:hover .driver-image img {
+    transform: scale(1.06);
+}
+
+.driver-info {
+    padding: 18px;
+}
+
+.driver-number {
+    color: var(--red);
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.driver-info h3 {
+    margin: 5px 0;
+    font-size: 20px;
+}
+
+.driver-info p {
+    color: var(--gray);
+    font-size: 14px;
+}
+
+.driver-team {
+    display: block;
+    margin-top: 12px;
+    border-top: 1px solid var(--border);
+    padding-top: 10px;
+    font-size: 13px;
+}
+
+/* ==============================
+   TEAM SECTION
+================================= */
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.team-card {
+    padding: 25px 15px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    text-align: center;
+    transition: 0.3s;
+}
+
+.team-card:hover {
+    border-color: var(--red);
+    transform: translateY(-5px);
+}
+
+.team-icon {
+    font-size: 45px;
+    margin-bottom: 10px;
+}
+
+.team-card h3 {
+    font-size: 17px;
+}
+
+.team-card p {
+    color: var(--gray);
+    font-size: 13px;
+    margin-top: 5px;
+}
+
+/* ==============================
+   STANDINGS TABLE
+================================= */
+
+.table-wrapper {
+    overflow-x: auto;
+}
+
+.standings-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--card);
+    min-width: 600px;
+}
+
+.standings-table th {
+    background: var(--red);
+    color: white;
+    text-align: left;
+    padding: 15px;
+    font-size: 13px;
+}
+
+.standings-table td {
+    padding: 15px;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+}
+
+.standings-table tr:hover {
+    background: #1b2430;
+}
+
+.position {
+    color: var(--red);
+    font-weight: bold;
+}
+
+/* ==============================
+   RACE CALENDAR
+================================= */
+
+.race-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+}
+
+.race-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 25px;
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+    transition: 0.3s;
+}
+
+.race-card:hover {
+    border-color: var(--red);
+    transform: translateY(-5px);
+}
+
+.race-round {
+    color: var(--red);
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.race-card h3 {
+    margin: 10px 0;
+    font-size: 22px;
+}
+
+.race-card p {
+    color: var(--gray);
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+.race-date {
+    border-top: 1px solid var(--border);
+    padding-top: 12px;
+    font-size: 13px;
+}
+
+/* ==============================
+   NEWS SECTION
+================================= */
+
+.news-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+}
+
+.news-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: 0.3s;
+}
+
+.news-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--red);
+}
+
+.news-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+.news-content {
+    padding: 22px;
+}
+
+.news-category {
+    color: var(--red);
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.news-content h3 {
+    margin: 10px 0;
+    font-size: 20px;
+}
+
+.news-content p {
+    color: var(--gray);
+    font-size: 14px;
+}
+
+.read-more {
+    display: inline-block;
+    color: var(--red);
+    margin-top: 15px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/* ==============================
+   GALLERY
+================================= */
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.gallery-item {
+    height: 230px;
+    overflow: hidden;
+    border-radius: 7px;
+    border: 1px solid var(--border);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: 0.5s;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.1);
+}
+
+/* ==============================
+   NEWSLETTER
+================================= */
+
+.newsletter {
+    background: linear-gradient(120deg, #171e28, #080b10);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 45px;
+    text-align: center;
+}
+
+.newsletter h2 {
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+.newsletter h2 span {
+    color: var(--red);
+}
+
+.newsletter p {
+    color: var(--gray);
+    margin-bottom: 25px;
+}
+
+.newsletter-form {
+    display: flex;
+    gap: 10px;
+    max-width: 550px;
+    margin: auto;
+}
+
+.newsletter-form input {
+    flex: 1;
+    min-width: 0;
+    padding: 14px;
+    border: 1px solid var(--border);
+    background: #080b10;
+    color: white;
+    border-radius: 4px;
+    outline: none;
+}
+
+.newsletter-form input:focus {
+    border-color: var(--red);
+}
+
+/* ==============================
+   CONTACT SECTION
+================================= */
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 35px;
+}
+
+.contact-info {
+    background: var(--card);
+    padding: 30px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+}
+
+.contact-info h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.contact-info p {
+    color: var(--gray);
+    margin: 15px 0;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 14px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    color: white;
+    font-family: inherit;
+    outline: none;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border-color: var(--red);
+}
+
+.contact-form textarea {
+    min-height: 140px;
+    resize: vertical;
+}
+
+/* ==============================
+   FOOTER
+================================= */
+
+footer {
+    background: #05070b;
+    border-top: 1px solid var(--border);
+    padding: 45px 0 20px;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 35px;
+    margin-bottom: 35px;
+}
+
+.footer-about p {
+    color: var(--gray);
+    margin-top: 15px;
+    max-width: 350px;
+    font-size: 14px;
+}
+
+.footer-links h3 {
+    margin-bottom: 15px;
+    font-size: 17px;
+}
+
+.footer-links ul {
+    list-style: none;
+}
+
+.footer-links li {
+    margin: 9px 0;
+}
+
+.footer-links a {
+    color: var(--gray);
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.footer-links a:hover {
+    color: var(--red);
+}
+
+.footer-bottom {
+    border-top: 1px solid var(--border);
+    padding-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    flex-wrap: wrap;
+    color: var(--gray);
+    font-size: 13px;
+}
+
+/* ==============================
+   ANIMATIONS
+================================= */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
     }
 
-    h1 {
-        color: darkblue;
-        background-color: lightyellow;
-        padding: 15px;
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero-content {
+    animation: fadeIn 1s ease;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        box-shadow: 0 0 0 0 rgba(255, 24, 56, 0.2);
     }
 
-    p {
-        color: black;
-        font-size: 18px;
+    50% {
+        box-shadow: 0 0 0 8px rgba(255, 24, 56, 0);
+    }
+}
+
+.hero .btn {
+    animation: pulse 2s infinite;
+}
+
+/* ==============================
+   RESPONSIVE DESIGN
+================================= */
+
+@media (max-width: 1000px) {
+
+    .driver-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
 
-    a {
-        color: white;
-        background-color: blue;
-        padding: 10px;
-        text-decoration: none;
+    .team-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
+
+    .race-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .nav-links {
+        gap: 12px;
+    }
+}
+
+@media (max-width: 700px) {
+
+    .navbar {
+        flex-direction: column;
+        padding: 18px 0;
+    }
+
+    .nav-links {
+        justify-content: center;
+    }
+
+    .hero {
+        min-height: 470px;
+    }
+
+    .hero h1 {
+        font-size: 43px;
+    }
+
+    .news-grid,
+    .gallery-grid,
+    .contact-grid,
+    .footer-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .race-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .newsletter {
+        padding: 25px;
+    }
+
+    .newsletter-form {
+        flex-direction: column;
+    }
+
+    .btn-outline {
+        margin: 12px 0 0;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+    }
+
+    section {
+        padding: 45px 0;
+    }
+
+    .section-title {
+        font-size: 26px;
+    }
+}
+
+@media (max-width: 400px) {
+
+    .driver-grid,
+    .team-grid,
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero h1 {
+        font-size: 35px;
+    }
+
+    .nav-links {
+        gap: 10px;
+    }
+
+    .nav-links a {
+        font-size: 12px;
+    }
+}
+
 </style>
-```
-
 </head>
+
 <body>
 
-```
-<h1>Welcome to My Website</h1>
+<!-- ==============================
+     NAVIGATION
+================================= -->
 
-<p>This is my first HTML and CSS page.</p>
+<header>
+    <div class="container navbar">
 
-<h2>My Details</h2>
-<p>Name: Sunny</p>
-<p>Course: Computer Engineering</p>
+        <a href="#home" class="logo">
+            F1 <span>FANBASE</span>
+        </a>
 
-<h2>My Hobbies</h2>
-<ul>
-    <li>Gaming</li>
-    <li>Watching Movies</li>
-    <li>Learning Coding</li>
-</ul>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#drivers">Drivers</a></li>
+                <li><a href="#teams">Teams</a></li>
+                <li><a href="#calendar">Race Calendar</a></li>
+                <li><a href="#standings">Standings</a></li>
+                <li><a href="#news">News</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
 
-<br><br>
+    </div>
+</header>
 
-<a href="https://www.google.com">Visit Google</a>
-```
+<!-- ==============================
+     HERO
+================================= -->
+
+<section class="hero" id="home">
+
+    <div class="container">
+
+        <div class="hero-content">
+
+            <span class="hero-label">WELCOME TO FORMULA ONE</span>
+
+            <h1>
+                SPEED.<br>
+                PASSION.<br>
+                ONE <span>FAMILY.</span>
+            </h1>
+
+            <p>
+                Experience the thrill of Formula One.
+                Discover your favourite drivers, explore legendary
+                teams, follow race weekends and stay connected
+                with the world of motorsport.
+            </p>
+
+            <a href="#drivers" class="btn">
+                Explore Drivers →
+            </a>
+
+            <a href="#calendar" class="btn-outline">
+                Race Calendar
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ==============================
+     STATISTICS
+================================= -->
+
+<section id="statistics">
+
+    <div class="container">
+
+        <h2 class="section-title">
+            THE WORLD OF <span>F1</span>
+        </h2>
+
+        <div class="stats-grid">
+
+            <div class="stat-card">
+                <h2>11</h2>
+                <p>Teams in 2026</p>
+            </div>
+
+            <div class="stat-card">
+                <h2>22</h2>
+                <p>Race Drivers</p>
+            </div>
+
+            <div class="stat-card">
+                <h2>300+</h2>
+                <p>KM/H Top Speeds</p>
+            </div>
+
+            <div class="stat-card">
+                <h2>24</h2>
+                <p>Potential Race Weekends</p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ==============================
+     DRIVERS
+================================= -->
+
+<section id="drivers">
+
+    <div class="container">
+
+        <h2 class="section-title">
+            FEATURED <span>DRIVERS</span>
+        </h2>
+
+        <p class="section-description">
+            Meet some of the biggest names in Formula One.
+        </p>
+
+        <div class="driver-grid">
+
+            <article class="driver-card">
+
+                <div class="driver-image">
+                    <img
+                        src="https://placehold.co/500x350/18202b/ffffff?text=Max+Verstappen"
+                        alt="Max Verstappen placeholder portrait">
+                </div>
+
+                <div class="driver-info">
+                    <span class="driver-number">CAR #3</span>
+                    <h3>Max Verstappen</h3>
+                    <p>Netherlands</p>
+                    <span class="driver-team">Red Bull Racing</span>
+                </div>
+
+            </article>
+
+            <article class="driver-card">
+
+                <div class="driver-image">
+                    <img
+                        src="https://placehold.co/500x350/18202b/ffffff?text=Lando+Norris"
+                        alt="Lando Norris placeholder portrait">
+                </div>
+
+                <div class="driver-info">
+                    <span class="driver-number">CAR #1</span>
+                    <h3>Lando Norris</h3>
+                    <p>United Kingdom</p>
+                    <span class="driver-team">McLaren</span>
+                </div>
+
+            </article>
+
+            <article class="driver-card">
+
+                <div class="driver-image">
+                    <img
+                        src="https://placehold.co/500x350/18202b/ffffff?text=Charles+Leclerc"
+                        alt="Charles Leclerc placeholder portrait">
+                </div>
+
+                <div class="driver-info">
+                    <span class="driver-number">CAR #16</span>
+                    <h3>Charles Leclerc</h3>
+                    <p>Monaco</p>
+                    <span class="driver-team">Ferrari</span>
+                </div>
+
+            </article>
+
+            <article class="driver-card">
+
+                <div class="driver-image">
+                    <img
+                        src="https://placehold.co/500x350/18202b/ffffff?text=Lewis+Hamilton"
+                        alt="Lewis Hamilton placeholder portrait">
+                </div>
+
+                <div class="driver-info">
+                    <span class="driver-number">CAR #44</span>
+                    <h3>Lewis Hamilton</h3>
+                    <p>United Kingdom</p>
+                    <span class="driver-team">Ferrari</span>
+                </div>
+
+            </article>
+
+            <article class="driver-card">
+
+                <div class="driver-image">
+                    <img
+                        src="https://placehold.co/500x350/18202b/ffffff?text=Oscar+Piastri"
+                        alt="Oscar Piastri placeholder portrait">
+                </div>
+
+                <div class="driver-info">
+                    <span class="driver-number">CAR #81</span>
+                    <h3>Oscar Piastri</h3>
+                    <p>Australia</p>
+                    <span class="driver-team">McLaren</span>
+                </div>
+
+            </article>
+
+            <article class="driver-card">
+
+                <div class="driver-image">
+                    <img
+                        src="https://placehold.co/500x350/18202b/ffffff?text=George+Russell"
+                        alt="George Russell placeholder portrait">
+                </div>
+
+                <div class="driver-info">
+                    <span class="driver-number">CAR #63</span>
+                    <h3>George Russell</h3>
+                    <p>United Kingdom</p>
+                    <span class="driver-team">Mercedes</span>
+                </div>
+
+            </article>
+
+            <article class="driver-card">
+
+                <div class="driver-image">
+                    <img
+                        src="https://placehold.co/500x350/18202b/ffffff?text=Fernando+Alonso"
+                        alt="Fernando Alonso placeholder portrait">
+                </div>
+
+                <div class="driver-info">
+                    <span class="driver-number">CAR #14</span>
+                    <h3>Fernando Alonso</h3>
+                    <p>Spain</p>
+                    <span class="driver-team">Aston Martin</span>
+                </div>
+
+            </article>
+
+            <article class="driver-card">
+
+                <div class="driver-image">
+                    <img
+                        src="https://placehold.co/500x350/18202b/ffffff?text=Alex+Albon"
+                        alt="Alex Albon placeholder portrait">
+                </div>
+
+                <div class="driver-info">
+                    <span class="driver-number">CAR #23</span>
+                    <h3>Alexander Albon</h3>
+                    <p>Thailand</p>
+                    <span class="driver-team">Williams</span>
+                </div>
+
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ==============================
+     TEAMS
+================================= -->
+
+<section id="teams">
+
+    <div class="container">
+
+        <h2 class="section-title">
+            FORMULA ONE <span>TEAMS</span>
+        </h2>
+
+        <div class="team-grid">
+
+            <div class="team-card">
+                <div class="team-icon">🐂</div>
+                <h3>Red Bull Racing</h3>
+                <p>Milton Keynes, UK</p>
+            </div>
+
+            <div class="team-card">
+                <div class="team-icon">⭐</div>
+                <h3>Mercedes</h3>
+                <p>Brackley, UK</p>
+            </div>
+
+            <div class="team-card">
+                <div class="team-icon">🐎</div>
+                <h3>Ferrari</h3>
+                <p>Maranello, Italy</p>
+            </div>
+
+            <div class="team-card">
+                <div class="team-icon">🏎️</div>
+                <h3>McLaren</h3>
+                <p>Woking, UK</p>
+            </div>
+
+            <div class="team-card">
+                <div class="team-icon">🏁</div>
+                <h3>Aston Martin</h3>
+                <p>Silverstone, UK</p>
+            </div>
+
+            <div class="team-card">
+                <div class="team-icon">🔷</div>
+                <h3>Alpine</h3>
+                <p>Enstone, UK</p>
+            </div>
+
+            <div class="team-card">
+                <div class="team-icon">🔵</div>
+                <h3>Williams</h3>
+                <p>Grove, UK</p>
+            </div>
+
+            <div class="team-card">
+                <div class="team-icon">⚫</div>
+                <h3>Haas</h3>
+                <p>Kannapolis, USA</p>
+            </div>
+
+            <div class="team-card">
+                <div class="team-icon">🏎️</div>
+                <h3>Racing Bulls</h3>
+                <p>Faenza, Italy</p>
+            </div>
+
+            <div class="team-card">
+                <div class="team-icon">⚡</div>
+                <h3>Audi</h3>
+                <p>Formula One team</p>
+            </div>
+
+            <div class="team-card">
+                <div class="team-icon">🟢</div>
+                <h3>Cadillac</h3>
+                <p>Formula One team</p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ==============================
+     CHAMPIONSHIP STANDINGS
+================================= -->
+
+<section id="standings">
+
+    <div class="container">
+
+        <h2 class="section-title">
+            CHAMPIONSHIP <span>STANDINGS</span>
+        </h2>
+
+        <p class="section-description">
+            Example standings for website demonstration.
+            Replace these values with official results.
+        </p>
+
+        <div class="table-wrapper">
+
+            <table class="standings-table">
+
+                <thead>
+                    <tr>
+                        <th>POS</th>
+                        <th>DRIVER</th>
+                        <th>TEAM</th>
+                        <th>POINTS</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td class="position">01</td>
+                        <td>Max Verstappen</td>
+                        <td>Red Bull Racing</td>
+                        <td>437</td>
+                    </tr>
+
+                    <tr>
+                        <td class="position">02</td>
+                        <td>Lando Norris</td>
+                        <td>McLaren</td>
+                        <td>374</td>
+                    </tr>
+
+                    <tr>
+                        <td class="position">03</td>
+                        <td>Charles Leclerc</td>
+                        <td>Ferrari</td>
+                        <td>356</td>
+                    </tr>
+
+                    <tr>
+                        <td class="position">04</td>
+                        <td>Oscar Piastri</td>
+                        <td>McLaren</td>
+                        <td>292</td>
+                    </tr>
+
+                    <tr>
+                        <td class="position">05</td>
+                        <td>Carlos Sainz</td>
+                        <td>Ferrari</td>
+                        <td>290</td>
+                    </tr>
+
+                    <tr>
+                        <td class="position">06</td>
+                        <td>Lewis Hamilton</td>
+                        <td>Mercedes</td>
+                        <td>250</td>
+                    </tr>
+
+                    <tr>
+                        <td class="position">07</td>
+                        <td>George Russell</td>
+                        <td>Mercedes</td>
+                        <td>245</td>
+                    </tr>
+
+                    <tr>
+                        <td class="position">08</td>
+                        <td>Sergio Perez</td>
+                        <td>Red Bull Racing</td>
+                        <td>152</td>
+                    </tr>
+
+                    <tr>
+                        <td class="position">09</td>
+                        <td>Fernando Alonso</td>
+                        <td>Aston Martin</td>
+                        <td>70</td>
+                    </tr>
+
+                    <tr>
+                        <td class="position">10</td>
+                        <td>Pierre Gasly</td>
+                        <td>Alpine</td>
+                        <td>42</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ==============================
+     RACE CALENDAR
+================================= -->
+
+<section id="calendar">
+
+    <div class="container">
+
+        <h2 class="section-title">
+            RACE <span>CALENDAR</span>
+        </h2>
+
+        <p class="section-description">
+            Sample race cards. Check the official F1 calendar
+            for confirmed dates and session times.
+        </p>
+
+        <div class="race-grid">
+
+            <article class="race-card">
+                <span class="race-round">ROUND 01</span>
+                <h3>Australian GP</h3>
+                <p>Melbourne, Australia</p>
+                <div class="race-date">Albert Park Circuit</div>
+            </article>
+
+            <article class="race-card">
+                <span class="race-round">ROUND 02</span>
+                <h3>Chinese GP</h3>
+                <p>Shanghai, China</p>
+                <div class="race-date">Shanghai International Circuit</div>
+            </article>
+
+            <article class="race-card">
+                <span class="race-round">ROUND 03</span>
+                <h3>Japanese GP</h3>
+                <p>Suzuka, Japan</p>
+                <div class="race-date">Suzuka International Racing Course</div>
+            </article>
+
+            <article class="race-card">
+                <span class="race-round">ROUND 04</span>
+                <h3>Bahrain GP</h3>
+                <p>Sakhir, Bahrain</p>
+                <div class="race-date">Bahrain International Circuit</div>
+            </article>
+
+            <article class="race-card">
+                <span class="race-round">ROUND 05</span>
+                <h3>Saudi Arabian GP</h3>
+                <p>Jeddah, Saudi Arabia</p>
+                <div class="race-date">Jeddah Corniche Circuit</div>
+            </article>
+
+            <article class="race-card">
+                <span class="race-round">ROUND 06</span>
+                <h3>Miami GP</h3>
+                <p>Miami, United States</p>
+                <div class="race-date">Miami International Autodrome</div>
+            </article>
+
+            <article class="race-card">
+                <span class="race-round">ROUND 07</span>
+                <h3>Monaco GP</h3>
+                <p>Monte Carlo, Monaco</p>
+                <div class="race-date">Circuit de Monaco</div>
+            </article>
+
+            <article class="race-card">
+                <span class="race-round">ROUND 08</span>
+                <h3>British GP</h3>
+                <p>Silverstone, United Kingdom</p>
+                <div class="race-date">Silverstone Circuit</div>
+            </article>
+
+            <article class="race-card">
+                <span class="race-round">ROUND 09</span>
+                <h3>Italian GP</h3>
+                <p>Monza, Italy</p>
+                <div class="race-date">Autodromo Nazionale Monza</div>
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ==============================
+     LATEST NEWS
+================================= -->
+
+<section id="news">
+
+    <div class="container">
+
+        <h2 class="section-title">
+            LATEST <span>NEWS</span>
+        </h2>
+
+        <div class="news-grid">
+
+            <article class="news-card">
+
+                <img
+                    src="https://placehold.co/600x350/19212d/ffffff?text=Race+Weekend"
+                    alt="Formula One race weekend">
+
+                <div class="news-content">
+
+                    <span class="news-category">RACE WEEKEND</span>
+
+                    <h3>Everything You Need to Know Before Race Day</h3>
+
+                    <p>
+                        Explore the key things fans should watch
+                        during practice, qualifying and the Grand Prix.
+                    </p>
+
+                    <a href="#calendar" class="read-more">
+                        Explore Calendar →
+                    </a>
+
+                </div>
+
+            </article>
+
+            <article class="news-card">
+
+                <img
+                    src="https://placehold.co/600x350/19212d/ffffff?text=Team+Strategy"
+                    alt="Formula One team strategy">
+
+                <div class="news-content">
+
+                    <span class="news-category">STRATEGY</span>
+
+                    <h3>How Pit Stops Can Change a Race</h3>
+
+                    <p>
+                        Tyre choices, pit-stop timing and safety cars
+                        can make the difference between victory and defeat.
+                    </p>
+
+                    <a href="#teams" class="read-more">
+                        Discover Teams →
+                    </a>
+
+                </div>
+
+            </article>
+
+            <article class="news-card">
+
+                <img
+                    src="https://placehold.co/600x350/19212d/ffffff?text=Driver+Battle"
+                    alt="Formula One driver battle">
+
+                <div class="news-content">
+
+                    <span class="news-category">DRIVERS</span>
+
+                    <h3>The Art of Wheel-to-Wheel Racing</h3>
+
+                    <p>
+                        Learn about overtaking, braking zones,
+                        defensive driving and racecraft.
+                    </p>
+
+                    <a href="#drivers" class="read-more">
+                        Meet the Drivers →
+                    </a>
+
+                </div>
+
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ==============================
+     GALLERY
+================================= -->
+
+<section id="gallery">
+
+    <div class="container">
+
+        <h2 class="section-title">
+            RACING <span>GALLERY</span>
+        </h2>
+
+        <p class="section-description">
+            A collection of motorsport-inspired visuals.
+        </p>
+
+        <div class="gallery-grid">
+
+            <div class="gallery-item">
+                <img
+                    src="https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=800&q=80"
+                    alt="Performance car">
+            </div>
+
+            <div class="gallery-item">
+                <img
+                    src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=800&q=80"
+                    alt="Sports car">
+            </div>
+
+            <div class="gallery-item">
+                <img
+                    src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=800&q=80"
+                    alt="Luxury performance vehicle">
+            </div>
+
+            <div class="gallery-item">
+                <img
+                    src="https://images.unsplash.com/photo-1544829099-b9a0c07fad1a?auto=format&fit=crop&w=800&q=80"
+                    alt="Automotive photography">
+            </div>
+
+            <div class="gallery-item">
+                <img
+                    src="https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=800&q=80"
+                    alt="Red sports car">
+            </div>
+
+            <div class="gallery-item">
+                <img
+                    src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=800&q=80"
+                    alt="Sports car on display">
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ==============================
+     NEWSLETTER
+================================= -->
+
+<section id="newsletter">
+
+    <div class="container">
+
+        <div class="newsletter">
+
+            <h2>STAY <span>IN THE FAST LANE</span></h2>
+
+            <p>
+                Join our fan community for racing stories,
+                updates and motorsport discussions.
+            </p>
+
+            <form class="newsletter-form" action="#" method="get">
+
+                <input
+                    type="email"
+                    name="email"
+                    placeholder="Enter your email address"
+                    aria-label="Email address"
+                    required>
+
+                <button type="submit" class="btn">
+                    Subscribe
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ==============================
+     CONTACT
+================================= -->
+
+<section id="contact">
+
+    <div class="container">
+
+        <h2 class="section-title">
+            CONTACT <span>US</span>
+        </h2>
+
+        <div class="contact-grid">
+
+            <div class="contact-info">
+
+                <h3>Let's Talk Racing!</h3>
+
+                <p>
+                    Have a question, suggestion or idea for the
+                    F1 fan community? Send us a message.
+                </p>
+
+                <p>📧 Email: hello@f1fanbase.example</p>
+
+                <p>🏁 Website: F1 Fanbase</p>
+
+                <p>🌍 Community: Motorsport Fans Worldwide</p>
+
+                <p>
+                    Follow the official Formula One website
+                    for verified news and race information.
+                </p>
+
+                <a
+                    href="https://www.formula1.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="btn">
+                    Official F1 Website →
+                </a>
+
+            </div>
+
+            <form class="contact-form" action="#" method="get">
+
+                <input
+                    type="text"
+                    name="name"
+                    placeholder="Your Name"
+                    aria-label="Your name"
+                    required>
+
+                <input
+                    type="email"
+                    name="email"
+                    placeholder="Your Email"
+                    aria-label="Your email"
+                    required>
+
+                <input
+                    type="text"
+                    name="subject"
+                    placeholder="Subject"
+                    aria-label="Message subject"
+                    required>
+
+                <textarea
+                    name="message"
+                    placeholder="Write your message..."
+                    aria-label="Your message"
+                    required></textarea>
+
+                <button type="submit" class="btn">
+                    Send Message
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ==============================
+     FOOTER
+================================= -->
+
+<footer>
+
+    <div class="container">
+
+        <div class="footer-grid">
+
+            <div class="footer-about">
+
+                <a href="#home" class="logo">
+                    F1 <span>FANBASE</span>
+                </a>
+
+                <p>
+                    A fan-made destination for Formula One enthusiasts.
+                    Celebrate racing, discover teams and drivers,
+                    and share your passion for motorsport.
+                </p>
+
+            </div>
+
+            <div class="footer-links">
+
+                <h3>QUICK LINKS</h3>
+
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#drivers">Drivers</a></li>
+                    <li><a href="#teams">Teams</a></li>
+                    <li><a href="#calendar">Race Calendar</a></li>
+                </ul>
+
+            </div>
+
+            <div class="footer-links">
+
+                <h3>EXPLORE</h3>
+
+                <ul>
+                    <li><a href="#standings">Standings</a></li>
+                    <li><a href="#news">News</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+
+            <p>© 2026 F1 Fanbase. Fan-made demonstration website.</p>
+
+            <p>Built with HTML and CSS.</p>
+
+        </div>
+
+    </div>
+
+</footer>
 
 </body>
 </html>
+```
